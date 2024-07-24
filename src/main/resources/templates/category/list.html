@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Liste des Catégories</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container my-4">
+<h1 class="text-center mb-4">Liste des Catégories</h1>
+
+<div th:if="${categories.isEmpty()}" class="alert alert-warning text-center">
+    <p>Veuillez ajouter des catégories !</p>
+</div>
+
+<div th:unless="${categories.isEmpty()}" class="row justify-content-center">
+    <ul class="list-group col-md-8">
+        <li class="list-group-item d-flex justify-content-between align-items-center" th:each="c : ${categories}">
+            <span th:text="${c.name} + ' - ' + ${c.description}" class="fw-bold"></span>
+            <div>
+                <a th:href="@{/category/update/{id}(id=${c.idCategory})}" class="btn btn-primary btn-sm me-1">Modifier</a>
+                <a th:href="@{/category/delete/{id}(id=${c.idCategory})}" class="btn btn-danger btn-sm">Supprimer</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <a th:href="@{/}" class="btn btn-custom me-2">Accueil</a>
+    <a th:href="@{/category/form}" class="btn btn-success">Ajouter une Catégorie</a>
+</div>
+
+<!-- Bootstrap 5 JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
