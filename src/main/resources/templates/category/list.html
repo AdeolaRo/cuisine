@@ -5,35 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Liste des Catégories</title>
-    <!-- Bootstrap 5 CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-custom {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body class="container my-4">
 <h1 class="text-center mb-4">Liste des Catégories</h1>
 
+
 <div th:if="${categories.isEmpty()}" class="alert alert-warning text-center">
     <p>Veuillez ajouter des catégories !</p>
 </div>
 
+
 <div th:unless="${categories.isEmpty()}" class="row justify-content-center">
-    <ul class="list-group col-md-8">
-        <li class="list-group-item d-flex justify-content-between align-items-center" th:each="c : ${categories}">
-            <span th:text="${c.name} + ' - ' + ${c.description}" class="fw-bold"></span>
-            <div>
-                <a th:href="@{/category/update/{id}(id=${c.idCategory})}" class="btn btn-primary btn-sm me-1">Modifier</a>
-                <a th:href="@{/category/delete/{id}(id=${c.idCategory})}" class="btn btn-danger btn-sm">Supprimer</a>
-            </div>
-        </li>
-    </ul>
+    <div class="col-md-10">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Nom de la Catégorie</th>
+                <th scope="col">Description</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${categories}">
+                <td th:text="${c.name}" class="fw-bold"></td>
+                <td th:text="${c.description}"></td>
+                <td class="text-center">
+                    <a th:href="@{/category/update/{id}(id=${c.idCategory})}" class="btn btn-primary btn-sm me-1">Modifier</a>
+                    <a th:href="@{/category/delete/{id}(id=${c.idCategory})}" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
 
 <div class="d-flex justify-content-center mt-4">
     <a th:href="@{/}" class="btn btn-custom me-2">Accueil</a>
     <a th:href="@{/category/form}" class="btn btn-success">Ajouter une Catégorie</a>
 </div>
 
-<!-- Bootstrap 5 JS Bundle with Popper -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
