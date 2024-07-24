@@ -29,6 +29,7 @@ public class CategoryService {
         category1.setIdCategory(id++);
         category1.setName(category.getName());
         category1.setDescription(category.getDescription());
+        categories.add(category1);
         return category;
     }
 
