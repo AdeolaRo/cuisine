@@ -25,7 +25,7 @@
             <div class="col-md-6">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" id="description" th:field="*{description}" placeholder="Description de la catégorie" rows="4"></textarea>
-                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="badge rounded-pill text-bg-info"></span>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="badge rounded-pill text-bg-danger"></span>
             </div>
         </div>
 
